@@ -50,7 +50,7 @@ export const seedTrips: Trip[] = [
     endDate: "2026-02-11",
     currency: "EUR",
     travelStyle: "city-break",
-    summary: "The lowest cost per day, mostly because lodging and activities were compact.",
+    summary: "A compact lower-cost trip, mostly because lodging and activities were modest.",
     categoryTotals: [
       { categoryId: "lodging", amountCents: 28000 },
       { categoryId: "food", amountCents: 22000 },
