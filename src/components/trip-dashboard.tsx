@@ -19,6 +19,18 @@ import {
   getTripTotalCents,
   type Trip,
 } from "@/lib/triplens";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 type TripDashboardProps = {
   initialTrips: Trip[];
@@ -208,6 +220,11 @@ function CategoryBreakdown({ trips }: { trips: Trip[] }) {
   const visibleCategories = summary.categoryBreakdown
     .filter((category) => category.amountCents > 0)
     .sort((a, b) => b.amountCents - a.amountCents);
+  const chartData = visibleCategories.map((category) => ({
+    name: category.label,
+    value: category.amountCents,
+    color: category.color,
+  }));
 
   return (
     <section className="floating-card rounded-lg p-5">
@@ -218,6 +235,30 @@ function CategoryBreakdown({ trips }: { trips: Trip[] }) {
         </div>
         <WalletCards className="size-5 text-primary" aria-hidden="true" />
       </div>
+      <div className="mt-5 h-64" aria-label="Category spending donut chart">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={chartData}
+              dataKey="value"
+              innerRadius="58%"
+              outerRadius="82%"
+              paddingAngle={3}
+              stroke="rgba(255,255,255,0.9)"
+              strokeWidth={4}
+            >
+              {chartData.map((entry) => (
+                <Cell fill={entry.color} key={entry.name} />
+              ))}
+            </Pie>
+            <Tooltip
+              formatter={(value) => formatMoney(Number(value))}
+              labelFormatter={(label) => String(label)}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
       <div className="mt-5 space-y-4">
         {visibleCategories.map((category) => (
           <div key={category.categoryId}>
@@ -245,11 +286,41 @@ function CategoryBreakdown({ trips }: { trips: Trip[] }) {
 
 function YearlyTravel({ summary }: { summary: ReturnType<typeof buildTripInsightSummary> }) {
   const maxYear = Math.max(...summary.yearlyTotals.map((year) => year.amountCents));
+  const chartData = summary.yearlyTotals.map((year) => ({
+    year: String(year.year),
+    amountCents: year.amountCents,
+    tripCount: year.tripCount,
+  }));
 
   return (
     <section className="floating-card rounded-lg p-5">
       <p className="metric-label">Year view</p>
       <h2 className="mt-1 text-2xl font-semibold">Travel spend by year</h2>
+      <div className="mt-5 h-56" aria-label="Yearly travel spending bar chart">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={chartData} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
+            <CartesianGrid stroke="rgba(47, 127, 134, 0.12)" vertical={false} />
+            <XAxis
+              axisLine={false}
+              dataKey="year"
+              tickLine={false}
+              tick={{ fill: "#47666b", fontSize: 12 }}
+            />
+            <YAxis
+              axisLine={false}
+              tickFormatter={(value) => formatMoney(Number(value))}
+              tickLine={false}
+              tick={{ fill: "#47666b", fontSize: 12 }}
+              width={74}
+            />
+            <Tooltip
+              formatter={(value) => [formatMoney(Number(value)), "Travel spend"]}
+              labelFormatter={(label) => `Year ${label}`}
+            />
+            <Bar dataKey="amountCents" fill="#2f7f86" radius={[8, 8, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
       <div className="mt-5 space-y-4">
         {summary.yearlyTotals.map((year) => (
           <div key={year.year} className="rounded-lg bg-base-200/65 p-4">
