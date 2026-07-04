@@ -63,19 +63,19 @@ Implement the approved trip comparison plan. Keep the change small, then summari
 ### Prompt 03A: Explain The Diff
 
 ```txt
-Inspect the current diff. Explain what changed, why it changed, and what I should verify. Do not edit files.
+Compare this branch against main. Explain what changed, why it matters, and what I should verify. Do not edit files.
 ```
 
 ### Prompt 03B: Focused Review
 
 ```txt
-Act as a focused reviewer agent. Inspect the current diff for calculation regressions, accessibility issues, unnecessary scope, and missing checks. Do not edit files.
+Act as a focused reviewer agent. Compare this branch against main and look for calculation regressions, accessibility issues, unnecessary scope, and missing checks. Do not edit files.
 ```
 
 ### Prompt 03C: Fix A Small Bug
 
 ```txt
-The trip comparison or yearly total is showing the wrong value after a trip is edited. Investigate the cause, propose a fix, and wait before editing files.
+The selected trip's per-day cost looks wrong. Run the focused checks, investigate the cause, propose a fix, and wait before editing files.
 ```
 
 ## `04-external-context-mcp`
