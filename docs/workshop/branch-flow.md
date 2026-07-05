@@ -30,12 +30,13 @@ bounded comparison feature.
 
 ## `03-inspect-and-verify`
 
-Purpose: introduce a Git/GitHub plugin with specialist PR review agents and
-verify behavior with checks.
+Purpose: introduce a pull-request review plugin with specialist review agents
+and verify behavior with checks.
 
-Expected shape: include the `.agents/plugins/triplens-git-github/` plugin
-folder, custom review/test agents, and a small intentional calculation bug
-around per-day trip cost. Review the branch like a PR before editing.
+Expected shape: include the `.agents/plugins/triplens-pr-review/` plugin
+folder, PR inspection/review skills, custom review agents, and a small
+intentional calculation bug around per-day trip cost. Review the branch like a
+PR before editing.
 
 ## `04-external-context-mcp`
 

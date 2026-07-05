@@ -64,7 +64,7 @@ Implement the approved trip comparison plan. Keep the change small, then summari
 ### Prompt 03A: Explain The Diff
 
 ```txt
-Use the TripLens Git/GitHub plugin's PR reviewer agent from `.agents/plugins/triplens-git-github/` to inspect PR #1 with the GitHub CLI. Summarize the PR status, changed files, risky areas, and checks that should be run. Do not edit files.
+Use the TripLens PR review plugin's lead reviewer agent from `.agents/plugins/triplens-pr-review/` to inspect PR #1 with the GitHub CLI. Summarize the PR status, changed files, risky areas, and checks that should be run. Do not edit files.
 ```
 
 ### Prompt 03B: Focused Review
