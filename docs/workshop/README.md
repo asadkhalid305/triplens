@@ -25,6 +25,9 @@ For the `00` versus `01` comparison, run the same plain prompt on both branches.
 Do not invoke workflows yet. The goal is to see whether ambient project context
 changes the output.
 
+Custom agents are introduced later in `03-inspect-and-verify`, where they act as
+specialist review/test surfaces for a PR-style inspection.
+
 ## Teaching Spine
 
 ```txt

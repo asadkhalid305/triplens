@@ -38,6 +38,10 @@ workshop:
 `AGENTS.md` is only the orientation layer. Detailed rules and workflows live in
 their dedicated files so the same instruction is not maintained in two places.
 
+Starting with the `03-inspect-and-verify` exercise, custom agents are used as a
+separate review surface. They are not part of the basic context comparison in
+`01-agent-context`.
+
 ## Workshop Workflow
 
 The app on `main` is the polished complete version. Workshop branches may
