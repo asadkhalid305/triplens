@@ -29,8 +29,8 @@ npm run verify     # lint + typecheck + tests + build
 This branch intentionally includes multiple agent-context surfaces for the
 workshop:
 
-- `.agent/rules/`: always-on product, data, UI, and verification constraints.
-- `.agent/workflows/`: repeatable routines for planning, reviewing, and
+- `.agents/rules/`: always-on product, data, UI, and verification constraints.
+- `.agents/workflows/`: repeatable routines for planning, reviewing, and
   verifying changes.
 - `.agents/skills/`: deeper reusable guidance for feature work, UI/forms, and
   review.
