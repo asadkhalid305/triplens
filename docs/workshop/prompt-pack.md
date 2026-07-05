@@ -109,22 +109,49 @@ Based on the Chrome DevTools evidence, explain the smallest code fix for the fai
 
 ## `05-automation-and-surfaces`
 
-### Prompt 05A: Non-Interactive Quality Check
+### Prompt 05A: Start A Scheduled PR Brief
 
-```bash
-agy -p "Inspect this repository and list the top 3 maintainability risks. Do not edit files."
-```
-
-### Prompt 05B: PR Summary
-
-```bash
-agy -p "Summarize the current diff as a concise pull request description. Do not edit files."
-```
-
-### Prompt 05C: Automation Candidate
+Run this inside the Antigravity CLI. Use a short interval for the live demo; in
+real work, use a daily schedule.
 
 ```txt
-Look at the work we did in this repository. Suggest one boring repeated task that would be a good candidate for automation. Explain why it is safe to automate and how to verify it.
+/schedule every 2 minutes: Use the GitHub CLI to inspect this repository's open pull requests, newest first. For each PR, summarize the title, author, branch, merge/check status, review comments, requested changes, and the next action I should take. If a comment needs a reply, draft a concise suggested reply. Do not edit files, create commits, post comments, or change PR state.
+```
+
+Observe:
+
+- Did the scheduled run happen without another manual prompt?
+- Did it gather current GitHub state instead of relying only on local files?
+- Did it stay read-only?
+- Was the output actionable enough for a morning work brief?
+
+### Prompt 05B: Create Demo PR Activity
+
+Use this only if the repository does not already have useful open PR activity.
+Run it before the next scheduled trigger. The script creates a unique branch,
+file, PR title, and comment so multiple attendees can run it without colliding.
+
+```bash
+npm run demo:scheduled-pr
+```
+
+Fallback if the script is blocked by local permissions or environment setup:
+
+```bash
+DEMO_ID="$(gh api user --jq .login)-$(date +%Y%m%d-%H%M%S)"
+git switch -c "demo/scheduled-pr-brief-${DEMO_ID}"
+printf "# Schedule Demo\n\nTemporary PR activity for the scheduled automation exercise.\n" > "docs/workshop/schedule-demo-${DEMO_ID}.md"
+git add "docs/workshop/schedule-demo-${DEMO_ID}.md"
+git commit -m "docs: add scheduled automation demo note (${DEMO_ID})"
+git push -u origin "demo/scheduled-pr-brief-${DEMO_ID}"
+PR_URL="$(gh pr create --title "docs: add scheduled automation demo note (${DEMO_ID})" --body "Demo PR for the scheduled automation workshop exercise.")"
+gh pr comment "$PR_URL" --body "Please confirm this demo stays focused on CLI scheduling and does not require Antigravity 2.0."
+```
+
+### Prompt 05C: Discuss Automation Fit
+
+```txt
+Based on the scheduled PR brief we just ran, explain why this is a good automation candidate. Be specific about what makes it boring, repeated, bounded, and safe. Also explain how we would verify the automation and what we should avoid automating without human approval.
 ```
 
 ## `06-command-showcase`

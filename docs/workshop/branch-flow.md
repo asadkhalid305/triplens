@@ -52,10 +52,15 @@ current package guidance.
 
 ## `05-automation-and-surfaces`
 
-Purpose: turn repeated, boring, bounded checks into automation candidates.
+Purpose: show that CLI scheduling can turn a repeated, bounded agent task into
+an automation.
 
-Expected shape: complete enough app and tests so non-interactive quality review,
-diff summary, and calculation-risk prompts are useful.
+Expected shape: same as `04`, with the GitHub/PR review context still available.
+Use a short recurring schedule during the live demo to generate a PR triage
+brief: list open PRs, summarize review comments, check status, identify actions,
+and suggest replies. Include a helper script for creating unique demo PR
+activity, plus manual fallback commands. Explain that a real team would usually
+schedule this daily, not every few minutes.
 
 ## `06-command-showcase`
 

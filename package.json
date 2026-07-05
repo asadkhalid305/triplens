@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "demo:scheduled-pr": "bash scripts/create-scheduled-pr-demo.sh",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
