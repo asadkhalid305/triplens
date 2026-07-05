@@ -1,6 +1,6 @@
 ---
 name: github-pr-inspection
-description: Inspect GitHub pull request metadata, diffs, mergeability, and checks before reviewing code.
+description: Inspect GitHub pull request metadata, diffs, mergeability, checks, and posting options before reviewing code.
 ---
 
 # GitHub PR Inspection
@@ -19,6 +19,20 @@ the code.
    GitHub diff URL when the repository is public.
 6. Note whether checks pass, fail, or are missing.
 7. Report PR status, changed files, risk areas, and the smallest useful local
-   checks before suggesting edits.
+   checks.
 
 Do not edit files during the inspection pass.
+
+## Posting Review Comments
+
+Default to drafting comments for user approval instead of fixing the PR.
+
+For an approved summary review comment, prefer:
+
+```bash
+gh pr review <number> --repo <owner>/<repo> --comment --body-file <file>
+```
+
+Use inline comments only when the file path and diff line are known and the
+posting command supports them reliably. Never post comments before the user
+approves the exact wording.

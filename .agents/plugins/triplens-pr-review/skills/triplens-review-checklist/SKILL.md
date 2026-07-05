@@ -22,8 +22,14 @@ Lead with findings, ordered by severity. For each finding, name the file,
 behavior, and verification signal. If there are no findings, say that clearly
 and note any remaining test or browser-verification gap.
 
-For calculation changes, start with `npm run test`. Do not edit files until the
-user asks for a fix.
+For calculation changes, start with `npm run test`.
+
+After findings, draft the GitHub review comment text you would post. The
+comment should explain the issue, why it matters, and the smallest expected
+change. Ask the user whether the comment looks good before posting it.
+
+Do not edit files during PR review. Do not ask to fix the PR unless the user
+explicitly switches from review to implementation.
 
 Do not recommend live finance features, bank integrations, auth, databases,
 receipt scanning, exchange-rate APIs, or broad redesigns unless the PR already
