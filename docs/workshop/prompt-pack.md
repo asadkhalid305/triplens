@@ -61,22 +61,22 @@ Implement the approved trip comparison plan. Keep the change small, then summari
 
 ## `03-inspect-and-verify`
 
-### Prompt 03A: Explain The Diff
+### Prompt 03A: Review The PR
 
 ```txt
 Use the TripLens PR review plugin's reviewer agent to review PR #1.
 ```
 
-### Prompt 03B: Focused Review
+### Prompt 03B: Review By URL
 
 ```txt
 Review this PR: https://github.com/asadkhalid305/triplens/pull/1
 ```
 
-### Prompt 03C: Fix A Small Bug
+### Prompt 03C: Post Approved Comments
 
 ```txt
-Fix the verified per-day cost regression with the smallest possible change. Run the relevant tests and summarize what changed.
+The proposed review comments look good. Post them on the PR.
 ```
 
 ## `04-external-context-mcp`

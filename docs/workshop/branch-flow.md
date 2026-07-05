@@ -36,7 +36,7 @@ and supporting review skills.
 Expected shape: include the `.agents/plugins/triplens-pr-review/` plugin
 folder, PR inspection/checklist skills, one custom reviewer agent, and a small
 intentional calculation bug around per-day trip cost. Review the branch like a
-PR before editing.
+PR, draft review comments, and post only after approval.
 
 ## `04-external-context-mcp`
 
