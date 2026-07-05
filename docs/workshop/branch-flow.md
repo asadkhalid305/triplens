@@ -30,7 +30,7 @@ bounded comparison feature.
 
 ## `03-inspect-and-verify`
 
-Purpose: introduce specialist review agents and verify behavior with checks.
+Purpose: introduce specialist PR review agents and verify behavior with checks.
 
 Expected shape: include custom review/test agents plus a small intentional
 calculation bug around per-day trip cost. Review the branch like a PR before

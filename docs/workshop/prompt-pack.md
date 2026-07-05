@@ -64,19 +64,19 @@ Implement the approved trip comparison plan. Keep the change small, then summari
 ### Prompt 03A: Explain The Diff
 
 ```txt
-Compare this branch against main. Explain what changed, why it matters, and what I should verify. Do not edit files.
+Use the TripLens PR reviewer agent to inspect PR #1 with the GitHub CLI. Summarize the PR status, changed files, risky areas, and checks that should be run. Do not edit files.
 ```
 
 ### Prompt 03B: Focused Review
 
 ```txt
-Act as a focused reviewer agent. Compare this branch against main and look for calculation regressions, accessibility issues, unnecessary scope, and missing checks. Do not edit files.
+Act as the TripLens test engineer. Review PR #1 using GitHub CLI data and focused local checks. Focus on calculation correctness, selected-trip behavior, comparison deltas, mergeability, failed checks, and missing verification. Report findings before editing.
 ```
 
 ### Prompt 03C: Fix A Small Bug
 
 ```txt
-The selected trip's per-day cost looks wrong. Run the focused checks, investigate the cause, propose a fix, and wait before editing files.
+Fix the verified per-day cost regression with the smallest possible change. Run the relevant tests and summarize what changed.
 ```
 
 ## `04-external-context-mcp`
