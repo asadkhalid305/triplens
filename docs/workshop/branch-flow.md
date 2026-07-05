@@ -33,9 +33,9 @@ bounded comparison feature.
 Purpose: introduce a Git/GitHub plugin with specialist PR review agents and
 verify behavior with checks.
 
-Expected shape: include the `triplens-git-github` plugin, custom review/test
-agents, and a small intentional calculation bug around per-day trip cost.
-Review the branch like a PR before editing.
+Expected shape: include the `.agents/plugins/triplens-git-github/` plugin
+folder, custom review/test agents, and a small intentional calculation bug
+around per-day trip cost. Review the branch like a PR before editing.
 
 ## `04-external-context-mcp`
 

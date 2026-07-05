@@ -25,7 +25,7 @@ For the `00` versus `01` comparison, run the same plain prompt on both branches.
 Do not invoke workflows yet. The goal is to see whether ambient project context
 changes the output.
 
-The `triplens-git-github` plugin is introduced later in
+The `.agents/plugins/triplens-git-github/` plugin is introduced later in
 `03-inspect-and-verify`, where its custom agents act as specialist review/test
 surfaces for a PR-style inspection.
 

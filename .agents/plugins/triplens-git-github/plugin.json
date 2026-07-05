@@ -1,0 +1,5 @@
+{
+  "name": "triplens-git-github",
+  "version": "1.0.0",
+  "description": "Workshop plugin surface for TripLens Git and GitHub PR review."
+}
