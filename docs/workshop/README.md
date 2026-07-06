@@ -11,6 +11,8 @@ clear teaching surface.
 
 - `branch-flow.md`: checkpoint branch purpose and expected app shape.
 - `prompt-pack.md`: copy-ready prompts for the workshop exercises.
+- `cli-command-showcase.md`: optional branch `06` trainer guide for CLI flags,
+  slash commands, shortcuts, settings, and take-home practice.
 
 ## Context Stack In `01-agent-context`
 
@@ -48,3 +50,10 @@ Context -> Plan -> Execute -> Inspect -> Verify -> Automate
 The product domain should stay light and understandable. The point is not to
 teach travel finance. The point is to give agents a real app surface where
 context, planning, review, verification, MCP, and automation become visible.
+
+## Optional CLI Wrap-Up
+
+Branch `06-command-showcase` is a CLI showcase, not a product exercise. Use it
+after `05-automation-and-hooks` only if there is time left. The command
+checklist lives in `cli-command-showcase.md` so the prompt pack can stay
+copy-ready while still giving attendees a complete take-home reference.

@@ -66,8 +66,16 @@ real team would usually schedule this daily, not every few minutes.
 
 ## `06-command-showcase`
 
-Purpose: optional branch for commands such as `/context`, `/goal`, `/fork`,
-`/rewind`, and `/resume`.
+Purpose: optional wrap-up branch for showcasing the Antigravity CLI command
+surface after the scheduling and hooks demo.
 
-Expected shape: same as `main` or a lightly staged branch with one safe change
-ready to explore.
+Expected shape: same as `05`, with no extra app exercise required. Use
+`docs/workshop/cli-command-showcase.md` and the prompt pack to demonstrate
+launch flags such as `-p`, `--sandbox`, `--dangerously-skip-permissions`, and
+`--prompt-interactive`; shell subcommands such as `models`, `changelog`, and
+`plugin validate`; interactive slash commands such as `/help`, `/context`,
+`/permissions`, `/settings`, `/goal`, `/schedule`, `/resume`, `/tasks`, `/fork`,
+and `/rewind`; plus important shortcuts and settings files.
+
+Treat this as a time-filler branch. If time is short, demo only the prioritized
+commands and leave the full checklist for take-home practice.

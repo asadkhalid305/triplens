@@ -179,34 +179,192 @@ Based on the scheduled PR brief and the read-only hook we just ran, explain why 
 
 ## `06-command-showcase`
 
-### Prompt 06A: Vague Request
+Use this branch only if there is time left after the scheduled automation demo.
+The live goal is to show the command surface, not to implement a new TripLens
+feature. The full trainer checklist is in
+`docs/workshop/cli-command-showcase.md`.
 
-```txt
-I want to make TripLens more useful for frequent travelers.
+### Prompt 06A: Discover The Installed CLI
+
+```bash
+agy --help
+agy models
+agy changelog | sed -n '1,80p'
+agy plugin help
 ```
 
-Use `/grill-me` or equivalent if available.
+Observe:
 
-### Prompt 06B: Goal
+- Which options are launch flags?
+- Which commands are shell subcommands?
+- Which features were added recently enough that `/help` should be trusted over
+  memory?
 
-```txt
-Goal: make the trip comparison feature easier to verify, keep the implementation small, and verify behavior before stopping.
+### Prompt 06B: Run A One-Shot Prompt
+
+```bash
+agy -p "Inspect this repository and list the top 3 Antigravity CLI surfaces a developer should know. Do not edit files."
 ```
 
-### Prompt 06C: Context
+Optional longer timeout:
 
-```txt
-Show or explain the current project context. What files and instructions are most important for your next answer?
+```bash
+agy --print-timeout 10m -p "Summarize the TripLens workshop branch sequence from docs/workshop/branch-flow.md. Do not edit files."
 ```
 
-### Prompt 06D: Fork
+Observe:
 
-```txt
-Try an alternative implementation direction for trip comparison that keeps the UI minimal. Do not overwrite the current direction unless I approve it.
+- The CLI runs without opening the full TUI.
+- The output can be copied into a PR note, script, or morning summary.
+- `--prompt` is an alias for `--print`; `-p` is the short form.
+
+### Prompt 06C: Launch With Different Safety Modes
+
+Run these as a facilitator demo, not as a required attendee exercise.
+
+```bash
+agy --sandbox
+agy --dangerously-skip-permissions
+agy --sandbox --dangerously-skip-permissions
 ```
 
-### Prompt 06E: Resume
+Observe:
+
+- `--sandbox` restricts terminal execution.
+- `--dangerously-skip-permissions` auto-approves tool permission prompts.
+- Combining them is still not a replacement for a trusted repo and a bounded
+  task.
+
+### Prompt 06D: Start With An Interactive Prompt
+
+```bash
+agy -i "Show me the most important local context files for this TripLens workshop branch. Do not edit files."
+```
+
+Observe:
+
+- The first prompt is sent automatically.
+- The session stays open for follow-up questions.
+
+### Prompt 06E: Inspect Context, Settings, And Permissions
 
 ```txt
-Resume the previous conversation about TripLens and summarize where we left off.
+/help
+/context
+/permissions
+/settings
 ```
+
+Observe:
+
+- `/help` is the source of truth for slash commands and shortcuts in the
+  installed CLI.
+- `/context` shows what the agent is carrying.
+- `/permissions` maps to tool approval behavior.
+- `.agents/settings.json` demonstrates project-level settings in this repo.
+
+### Prompt 06F: Goal And Background Work
+
+```txt
+/goal Make the trip comparison verification story clearer. Inspect the repo, propose the smallest useful documentation-only change, verify it, and stop only when the goal is complete.
+```
+
+Then inspect:
+
+```txt
+/tasks
+```
+
+Observe:
+
+- `/goal` is for longer autonomous work with a clear completion condition.
+- `/tasks` is where background activity is visible.
+
+### Prompt 06G: Scheduling Recap
+
+```txt
+/schedule every 2 minutes: Summarize the current Git status and the newest commit on this branch. Do not edit files, create commits, or push.
+```
+
+Observe:
+
+- This intentionally echoes branch `05`.
+- It helps attendees see `/schedule` as one slash command among the broader CLI
+  control surface.
+
+### Prompt 06H: Conversation Navigation
+
+Confirm exact names in `/help` first; command availability can change by CLI
+version.
+
+```txt
+/resume
+/fork
+/rewind
+```
+
+Observe:
+
+- `/resume` brings back prior conversations.
+- `/fork` is useful for trying an alternative direction without overwriting the
+  current one.
+- `/rewind` is useful when the conversation took a bad turn and you want to
+  continue from an earlier point.
+
+### Prompt 06I: Take-Home Checklist
+
+Try these after the workshop:
+
+```bash
+agy --continue
+agy -c
+agy --conversation <conversation-id>
+agy --model "<model name from agy models>"
+agy --project <project-id>
+agy --new-project
+agy --add-dir ../some-related-repo
+agy --log-file /tmp/agy-demo.log
+agy --print "Summarize this repo. Do not edit files."
+agy --prompt "Summarize this repo. Do not edit files."
+agy --prompt-interactive "Inspect the workshop docs. Do not edit files."
+agy install
+agy plugin list
+agy plugin validate .agents/plugins/triplens-pr-review
+agy plugin install <target>
+agy plugin uninstall <name>
+agy plugin enable <name>
+agy plugin disable <name>
+agy plugin import gemini
+agy plugin import claude
+agy plugins list
+agy update
+```
+
+Inside the TUI, explore:
+
+```txt
+/keybindings
+/model
+/usage
+/quota
+/credits
+/agents
+/skills
+/plugins
+/mcp
+/hooks
+/diff
+/open
+/add-dir
+/changelog
+/grill-me
+/learn
+```
+
+Shortcut practice:
+
+- Open `/help` and switch to the shortcuts tab.
+- Try `ctrl+c` to interrupt and again to exit.
+- Try `ctrl+r` on an artifact-producing task.
+- Try `ctrl+g` on a tool approval or artifact detail view.
+- Try `ctrl+k` only when quick approval is appropriate for the task.
