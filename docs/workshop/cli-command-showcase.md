@@ -18,6 +18,7 @@ Prioritize these if time is short.
 1. Show shell help and version-aware discovery.
 
 ```bash
+agy --version
 agy --help
 agy models
 agy changelog
@@ -97,6 +98,7 @@ Put these in the prompt pack so attendees can try them after the workshop.
 ### Launch Flags
 
 - `agy -p "..."` or `agy --print "..."`: run one prompt and print the answer.
+- `agy --version`: show the installed CLI version.
 - `agy --prompt "..."`: alias for print mode.
 - `agy -i "..."` or `agy --prompt-interactive "..."`: seed an interactive
   session with an initial prompt.

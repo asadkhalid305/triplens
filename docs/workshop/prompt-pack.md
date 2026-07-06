@@ -172,6 +172,7 @@ feature. The full trainer checklist is in
 ### Prompt 06A: Discover The Installed CLI
 
 ```bash
+agy --version
 agy --help
 agy models
 agy changelog | sed -n '1,80p'
