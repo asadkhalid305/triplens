@@ -50,7 +50,7 @@ panel includes a prepared `Refresh API comparison` action that produces a
 diagnosable failed network request. Context7 is a shorter optional docs demo for
 current package guidance.
 
-## `05-automation-and-surfaces`
+## `05-automation-and-hooks`
 
 Purpose: turn repeated, boring, bounded checks into automation candidates.
 

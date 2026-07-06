@@ -107,7 +107,7 @@ Use only if the facilitator wants to show the complete debug-to-fix loop.
 Based on the Chrome DevTools evidence, explain the smallest code fix for the failed API comparison request. Wait for approval before editing files.
 ```
 
-## `05-automation-and-surfaces`
+## `05-automation-and-hooks`
 
 ### Prompt 05A: Non-Interactive Quality Check
 
