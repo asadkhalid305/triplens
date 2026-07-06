@@ -150,14 +150,16 @@ npm run demo:scheduled-pr
 Fallback if the script is blocked by local permissions or environment setup:
 
 ```bash
-DEMO_ID="$(gh api user --jq .login)-$(date +%Y%m%d-%H%M%S)"
-git switch -c "demo/scheduled-pr-brief-${DEMO_ID}"
-printf "# Schedule Demo\n\nTemporary PR activity for the scheduled automation exercise.\n" > "docs/workshop/schedule-demo-${DEMO_ID}.md"
-git add "docs/workshop/schedule-demo-${DEMO_ID}.md"
-git commit -m "docs: add scheduled automation demo note (${DEMO_ID})"
-git push -u origin "demo/scheduled-pr-brief-${DEMO_ID}"
-PR_URL="$(gh pr create --title "docs: add scheduled automation demo note (${DEMO_ID})" --body "Demo PR for the scheduled automation workshop exercise.")"
-gh pr comment "$PR_URL" --body "Please confirm this demo stays focused on CLI scheduling and hooks."
+BASE_BRANCH="$(git branch --show-current)"
+DEMO_ID="05-automation-hooks-test-$(gh api user --jq .login)-$(date +%Y%m%d-%H%M%S)"
+git switch -c "demo/${DEMO_ID}"
+printf "# Schedule Demo\n\nTemporary PR activity for the 05 automation/hooks exercise.\n" > "docs/workshop/${DEMO_ID}.md"
+git add "docs/workshop/${DEMO_ID}.md"
+git commit -m "05 automation hooks test: add scheduled PR demo note (${DEMO_ID})"
+git push -u origin "demo/${DEMO_ID}"
+PR_URL="$(gh pr create --base "$BASE_BRANCH" --head "demo/${DEMO_ID}" --title "05 automation hooks test: add scheduled PR demo note (${DEMO_ID})" --body "Demo PR for the 05 automation and hooks workshop exercise.")"
+gh pr comment "$PR_URL" --body "Please confirm this 05 automation/hooks demo stays focused on CLI scheduling and read-only hook guardrails."
+git switch "$BASE_BRANCH"
 ```
 
 ## `06-command-showcase`
