@@ -351,7 +351,7 @@ agy plugin enable <name>
 agy plugin disable <name>
 agy plugin import gemini
 agy plugin import claude
-agy plugins list
+agy plugin list
 agy update
 ```
 
