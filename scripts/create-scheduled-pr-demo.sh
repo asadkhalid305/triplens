@@ -21,6 +21,16 @@ gh auth status >/dev/null 2>&1 ||
 
 base_branch="$(git branch --show-current)"
 [ -n "$base_branch" ] || fail "Could not determine the current branch."
+target_branch="$base_branch"
+
+return_to_base_branch() {
+  current_branch="$(git branch --show-current 2>/dev/null || true)"
+  if [ -n "$current_branch" ] && [ "$current_branch" != "$base_branch" ]; then
+    git switch "$base_branch" >/dev/null 2>&1 || true
+  fi
+}
+
+trap return_to_base_branch EXIT
 
 user_login="$(gh api user --jq .login 2>/dev/null || true)"
 if [ -z "$user_login" ]; then
@@ -35,14 +45,15 @@ timestamp="$(date +%Y%m%d-%H%M%S)"
 random_id="$(uuidgen 2>/dev/null | tr '[:upper:]' '[:lower:]' | cut -c 1-8 || true)"
 [ -n "$random_id" ] || random_id="$(git rev-parse --short HEAD)"
 
-demo_id="${user_slug}-${timestamp}-${random_id}"
-branch_name="demo/scheduled-pr-brief-${demo_id}"
-demo_file="docs/workshop/schedule-demo-${demo_id}.md"
-title="docs: add scheduled automation demo note (${demo_id})"
-body="Demo PR for the scheduled automation workshop exercise.
+demo_prefix="05-automation-hooks-test"
+demo_id="${demo_prefix}-${user_slug}-${timestamp}-${random_id}"
+branch_name="demo/${demo_id}"
+demo_file="docs/workshop/${demo_id}.md"
+title="05 automation hooks test: add scheduled PR demo note (${demo_id})"
+body="Demo PR for the 05 automation and hooks workshop exercise.
 
-This PR exists so the scheduled CLI automation has fresh GitHub activity to inspect."
-comment="Please confirm this demo stays focused on CLI scheduling and hooks."
+This PR exists so the scheduled read-only PR brief has fresh GitHub activity to inspect."
+comment="Please confirm this 05 automation/hooks demo stays focused on CLI scheduling and read-only hook guardrails."
 
 git switch -c "$branch_name"
 
@@ -52,15 +63,18 @@ cat >"$demo_file" <<EOF
 Temporary PR activity for the scheduled automation exercise.
 
 - Demo id: ${demo_id}
-- Created from: ${base_branch}
+- Created from: ${target_branch}
 EOF
 
 git add "$demo_file"
 git commit -m "$title"
 git push -u origin "$branch_name"
 
-pr_url="$(gh pr create --base "$base_branch" --head "$branch_name" --title "$title" --body "$body")"
+pr_url="$(gh pr create --base "$target_branch" --head "$branch_name" --title "$title" --body "$body")"
 gh pr comment "$pr_url" --body "$comment"
+
+return_to_base_branch
 
 printf "\nCreated demo PR: %s\n" "$pr_url"
 printf "Added review-style comment for the scheduled automation to summarize.\n"
+printf "Returned to branch: %s\n" "$base_branch"

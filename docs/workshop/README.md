@@ -41,6 +41,11 @@ and stored globally under the user's Gemini/Antigravity config directory. This
 repo file exists so attendees can inspect the exact servers for this branch and
 copy the `mcpServers` block into Antigravity when needed.
 
+The `.agents/hooks.json` hook configuration is introduced in
+`05-automation-and-hooks`. It pairs with the scheduled PR brief demo: scheduling
+decides when the agent runs, while the hook provides a deterministic read-only
+guardrail before shell commands execute.
+
 ## Teaching Spine
 
 ```txt
@@ -49,7 +54,8 @@ Context -> Plan -> Execute -> Inspect -> Verify -> Automate
 
 The product domain should stay light and understandable. The point is not to
 teach travel finance. The point is to give agents a real app surface where
-context, planning, review, verification, MCP, and automation become visible.
+context, planning, review, verification, MCP, scheduled automation, and hooks
+become visible.
 
 ## Optional CLI Wrap-Up
 

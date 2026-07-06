@@ -24,10 +24,10 @@ npm run build      # Production build
 npm run verify     # lint + typecheck + tests + build
 ```
 
-## Context Surfaces
+## Agent Context And Guardrails
 
-This branch intentionally includes multiple agent-context surfaces for the
-workshop:
+This branch intentionally includes multiple agent-context and guardrail files
+for the workshop:
 
 - `.agents/rules/`: always-on product, data, UI, and verification constraints.
 - `.agents/workflows/`: repeatable routines for planning, reviewing, and
@@ -37,7 +37,7 @@ workshop:
 - `.agents/hooks.json`: deterministic lifecycle guardrails for scheduled
   automation demos.
 - `.agents/plugins/` and `.agents/mcp_config.json`: exercise-specific extension
-  surfaces used by later workshop branches.
+  files used by later workshop branches.
 - `.agents/settings.json`: project-level Antigravity permission settings.
 
 `AGENTS.md` is only the orientation layer. Detailed rules and workflows live in

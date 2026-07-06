@@ -60,9 +60,10 @@ Expected shape: same as `04`, with the GitHub/PR review context still available.
 Use a short recurring schedule during the live demo to generate a PR triage
 brief: list open PRs, summarize review comments, check status, identify actions,
 and suggest replies. Include a helper script for creating unique demo PR
-activity, plus manual fallback commands. Add a workspace-level hook that blocks
-mutating GitHub/git commands from the scheduled read-only task. Explain that a
-real team would usually schedule this daily, not every few minutes.
+activity as a facilitator-run terminal command, plus manual fallback commands.
+Add a workspace-level hook that blocks mutating GitHub/git commands from agent
+tool calls. Explain that a real team would usually schedule this daily, not
+every few minutes.
 
 ## `06-command-showcase`
 
