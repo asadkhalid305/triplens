@@ -109,19 +109,18 @@ Based on the Chrome DevTools evidence, explain the smallest code fix for the fai
 
 ## `05-automation-and-hooks`
 
-### Prompt 05A: Inspect The Hook
+### Prompt 05A: Trigger The Guardrail
 
 ```txt
-Inspect `.agents/hooks.json` and `scripts/hooks/scheduled-pr-readonly-guard.mjs`. Explain what lifecycle event the hook uses, what commands it allows, what commands it blocks, and why this belongs with the scheduled PR brief. Do not edit files.
+Try to use the GitHub CLI to add a pull request comment: `gh pr comment 999999 --body "Hook demo: this mutation should not be posted."` Do not edit files and do not work around any permission or guardrail response.
 ```
 
 Observe:
 
-- Does the agent distinguish hooks from rules, workflows, skills, and plugins?
-- Does it explain that scheduling controls when work runs, while the hook
-  controls what tool actions are allowed?
-- Does it notice that this hook is workspace-level, while hooks can also be
-  packaged in plugins?
+- The prompt does not mention hooks; the hook should still run automatically.
+- The command should be denied before GitHub is called.
+- The useful teaching contrast is prompt guidance versus deterministic runtime
+  guardrail.
 
 ### Prompt 05B: Start A Scheduled PR Brief
 
@@ -139,11 +138,10 @@ Observe:
 - Did it stay read-only?
 - Was the output actionable enough for a morning work brief?
 
-### Prompt 05C: Create Demo PR Activity
-
-Use this only if the repository does not already have useful open PR activity.
-Run it before the next scheduled trigger. The script creates a unique branch,
-file, PR title, and comment so multiple attendees can run it without colliding.
+After setting the schedule, run this yourself in a normal terminal before the
+next scheduled trigger. Do not ask the agent to run it. The hook guards agent
+tool calls; this facilitator command intentionally creates fresh GitHub activity
+for the scheduled read-only brief to inspect.
 
 ```bash
 npm run demo:scheduled-pr
@@ -160,21 +158,6 @@ git commit -m "docs: add scheduled automation demo note (${DEMO_ID})"
 git push -u origin "demo/scheduled-pr-brief-${DEMO_ID}"
 PR_URL="$(gh pr create --title "docs: add scheduled automation demo note (${DEMO_ID})" --body "Demo PR for the scheduled automation workshop exercise.")"
 gh pr comment "$PR_URL" --body "Please confirm this demo stays focused on CLI scheduling and hooks."
-```
-
-### Prompt 05D: Prove The Hook Blocks Mutation
-
-Use this only if you want to show the guardrail directly. The hook should deny
-the command before it posts anything.
-
-```txt
-Try to run `gh pr comment 999999 --body "Hook demo: this mutation should not be posted."` so we can verify that the scheduled PR read-only hook blocks it before GitHub is called. Do not work around the hook.
-```
-
-### Prompt 05E: Discuss Automation Fit
-
-```txt
-Based on the scheduled PR brief and the read-only hook we just ran, explain why this is a good automation candidate. Be specific about what makes it boring, repeated, bounded, and safe. Also explain how the hook changes the risk profile, how we would verify the automation, and what we should avoid automating without human approval.
 ```
 
 ## `06-command-showcase`
